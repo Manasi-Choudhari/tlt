@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TLT Community — website
 
-## Getting Started
+Marketing site for **TLT Community (The Legend Travellers)** — *Trip Travel Therapy.*
 
-First, run the development server:
+Built with Next.js 16 (App Router), React 19, Tailwind CSS v4, GSAP (ScrollTrigger, SplitText, Flip, DrawSVG, MotionPath), Lenis smooth scroll and three.js via React Three Fiber.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm start          # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requires Node.js 20.9 or newer.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The easiest option is [Vercel](https://vercel.com/new): import the repository, keep the defaults and add the environment variables from `.env.example` in the project settings. Any Node.js host that can run `npm run build && npm start` also works.
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+All optional — see `.env.example` for details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for SEO, sitemap and social previews |
+| `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL` | Upgrade the travel assistant to an LLM (falls back to the built-in engine) |
+| `LEADS_WEBHOOK_URL` | Receive form submissions as JSON on a webhook |
+| `RESEND_API_KEY`, `LEADS_TO_EMAIL`, `LEADS_FROM_EMAIL` | Receive form submissions by email |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Editing content
 
-## Deploy on Vercel
+| What | Where |
+| --- | --- |
+| Business name, phone, WhatsApp, email, address, socials, stats, map | `src/data/site.ts` |
+| Trips — prices, itineraries, departures, inclusions, FAQs | `src/data/trips.ts` |
+| Testimonials, services, general FAQs, values | `src/data/content.ts` |
+| Image and video paths used across the site | `src/data/media.ts` |
+| Photos | `public/images/` |
+| Videos | `public/videos/` (then set `media.video.showreel`, e.g. `/videos/showreel.mp4`) |
+| Logo and icons | `public/brand/`, `src/app/icon.png`, `src/app/apple-icon.png`, `src/app/opengraph-image.png` |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The chatbot answers from `src/data/trips.ts` and `src/data/site.ts` automatically, so trip edits are reflected in its replies.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Replacing images
+
+Add `.webp` or `.jpg` files to `public/images/` (around 1920px wide keeps pages fast) and update the paths in `src/data/media.ts` / `src/data/trips.ts`. Reusing an existing file name swaps the photo everywhere without code changes.
+
+## Placeholder content
+
+Before launch, replace:
+
+- Contact details in `src/data/site.ts` (phone `+91 90000 00000`, WhatsApp, email, address, map).
+- Stats, testimonials and story copy — these are illustrative.
+- Photos — current images are Creative Commons photos from Wikimedia Commons, used as placeholders.

@@ -32,6 +32,12 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# local asset tooling and raw sources (not needed for deployment)
+/scripts
+AGENTS.md
+CLAUDE.md
 
 # vercel
 .vercel
