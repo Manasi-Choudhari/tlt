@@ -58,17 +58,17 @@ export function Hero() {
   );
 
   return (
-    <section ref={root} className="relative h-[100svh] min-h-[680px] overflow-hidden bg-ink-950">
+    <section ref={root} className="relative overflow-hidden bg-ink-950">
       <div data-hero-canvas className="absolute inset-0 origin-top overflow-hidden">
         <HeroScene />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/45 via-transparent to-ink-950/10" />
       </div>
 
-      <div data-hero-content className="container-x relative z-10 flex h-full flex-col justify-end pb-14 pt-32 text-white sm:pb-20">
+      <div data-hero-content className="container-x relative z-10 flex min-h-[100svh] flex-col justify-end pb-14 pt-32 text-white sm:pb-20">
         <p data-hero-fade className="eyebrow text-white/90">
           The Legend Travellers Community
         </p>
-        <h1 className="mt-5 font-display text-[clamp(3.4rem,11vw,10.5rem)] font-semibold leading-[0.88] tracking-[-0.05em] drop-shadow-[0_4px_30px_rgba(120,40,0,0.25)]">
+        <h1 className="mt-5 font-display text-[clamp(3.4rem,min(11vw,17svh),10.5rem)] font-semibold leading-[0.88] tracking-[-0.05em] drop-shadow-[0_4px_30px_rgba(120,40,0,0.25)]">
           <span data-hero-line className="block overflow-hidden pb-[0.06em]">
             <span className="block">Trip.</span>
           </span>
@@ -124,7 +124,7 @@ export function Hero() {
           )}
         </div>
 
-        <div data-hero-fade className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/70 lg:flex">
+        <div data-hero-fade className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/70 lg:flex [@media(max-height:820px)]:hidden">
           <span>Scroll</span>
           <ArrowDown className="h-4 w-4 animate-bounce" />
         </div>

@@ -4,7 +4,17 @@ import clsx from "clsx";
 import { Clock, MapPin, Star } from "lucide-react";
 import { destinationLabel, formatPrice, type Trip } from "@/data/trips";
 
-export function TripCard({ trip, className, priority }: { trip: Trip; className?: string; priority?: boolean }) {
+export function TripCard({
+  trip,
+  className,
+  imageClassName,
+  priority,
+}: {
+  trip: Trip;
+  className?: string;
+  imageClassName?: string;
+  priority?: boolean;
+}) {
   const off = trip.originalPrice ? Math.round((1 - trip.price / trip.originalPrice) * 100) : 0;
   return (
     <Link
@@ -12,7 +22,7 @@ export function TripCard({ trip, className, priority }: { trip: Trip; className?
       data-cursor="View"
       className={clsx("group flex flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-[0_20px_60px_-30px_rgba(26,18,11,0.35)]", className)}
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className={clsx("relative aspect-[4/3] shrink-0 overflow-hidden", imageClassName)}>
         <Image
           src={trip.image}
           alt={trip.title}
